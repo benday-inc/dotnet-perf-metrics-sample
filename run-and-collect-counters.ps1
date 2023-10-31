@@ -1,5 +1,15 @@
 # dotnet tool install --global dotnet-counters
-dotnet tool restore
+
+# check that dotnet-counters command exists
+if (Get-Command "dotnet-counters") {
+    Write-Host "dotnet-counters exists."
+}
+else {
+    Write-Host "dotnet-counters is not installed."
+    Write-Host "Run the following command to install it:"
+    Write-Host "dotnet tool install --global dotnet-counters"
+    exit;
+}
 
 Push-Location .\Benday.PerfMetrics.WebUi
 
