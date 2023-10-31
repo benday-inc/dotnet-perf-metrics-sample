@@ -13,10 +13,15 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(bool throwException = false)
     {
         try
         {
+            if (throwException == true)
+            {
+                throw new Exception("This is a test exception.");
+            }
+
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -52,10 +57,15 @@ public class HomeController : Controller
         return millisecondsToWait;
     }
 
-    public IActionResult Privacy()
+    public IActionResult Privacy(bool throwException = false)
     {
         try
         {
+            if (throwException == true)
+            {
+                throw new Exception("This is a test exception.");
+            }
+            
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -75,7 +85,7 @@ public class HomeController : Controller
             _logger.LogError(ex, "Unhandled exception in HomeController.Index().");
             ControllerPerformanceMetrics<HomeController>.Log.RecordError(
                 nameof(Privacy));
-                
+
             return View(new RandomDelayViewModel() { Message = ex.ToString() });
         }
     }

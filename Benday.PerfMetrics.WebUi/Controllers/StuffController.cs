@@ -13,10 +13,15 @@ public class StuffController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(bool throwException = false)
     {
         try
         {
+            if (throwException == true)
+            {
+                throw new Exception("This is a test exception.");
+            }
+            
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
